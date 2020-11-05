@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './components/Login.vue'
 import Home from './components/Home.vue'
+//把Welcome作为Home的子路由规则
+import Welcome from "./components/Welcome";
+import Users from "./components/User/Users";
+
 Vue.use(Router);
 
 const router =new Router({
@@ -17,7 +21,19 @@ const router =new Router({
     },
     {
       path: '/home',
-      component: Home
+      component: Home,
+      redirect: '/welcome',
+      /*配置子路由规则*/
+      children: [
+          {
+            path: '/welcome',
+            component: Welcome
+          },
+        {
+          path: '/users',
+          component: Users
+        }
+      ]
     }
   ]
 });
