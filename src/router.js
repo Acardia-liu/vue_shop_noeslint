@@ -5,7 +5,8 @@ import Home from './components/Home.vue'
 //把Welcome作为Home的子路由规则
 import Welcome from "./components/Welcome";
 import Users from "./components/User/Users";
-
+import Rights from "./components/power/Rights";
+import Roles from "./components/power/Roles";
 Vue.use(Router);
 
 const router =new Router({
@@ -29,9 +30,17 @@ const router =new Router({
             path: '/welcome',
             component: Welcome
           },
+          {
+            path: '/users',
+            component: Users
+          },
+          {
+            path: '/rights',
+            component: Rights
+          },
         {
-          path: '/users',
-          component: Users
+          path: '/roles',
+          component: Roles
         }
       ]
     }
