@@ -6,6 +6,8 @@ import './plugins/element.js'
 import './assets/fonts/iconfont.css'
 /* 导入全局样式表 */
 import './assets/css/global.css'
+/*导入第三方插件*/
+import TreeTable from 'vue-table-with-tree-grid'
 
 import axios from 'axios'
 /*每个vue的组件，都可通过this来直接访问$http,从而去发起ajax请求*/
@@ -20,7 +22,8 @@ axios.interceptors.request.use(config =>{
   return config
 })
 Vue.config.productionTip = false
-
+/*将TreeTable注册为全局可用组件*/
+Vue.component('tree-table',TreeTable)
 new Vue({
   router,
   render: h => h(App)

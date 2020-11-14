@@ -32,7 +32,8 @@ import
     Tag,
     Tree,
     Select,
-    Option
+    Option,
+    cascader
 } from 'element-ui'
 
 // 注册组件
@@ -62,6 +63,7 @@ Vue.use(Tag)
 Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
+Vue.use(cascader)
 
 
 

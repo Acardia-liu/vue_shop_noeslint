@@ -19,3 +19,10 @@ html, body, #app{
 .el-pagination{
     margin-top: 15px;
 }
+/*Cascader 级联选择器中父级选择器过多，撑满屏幕*/
+/*.el-cascader-menu__list{*/
+/*    height: 200px;*/
+/*}*/
+.el-cascader-panel{
+      height: 200px;
+  }
