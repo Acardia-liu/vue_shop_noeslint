@@ -33,7 +33,10 @@ import
     Tree,
     Select,
     Option,
-    cascader
+    cascader,
+    Alert,
+    Tabs,
+    TabPane
 } from 'element-ui'
 
 // 注册组件
@@ -64,6 +67,9 @@ Vue.use(Tree)
 Vue.use(Select)
 Vue.use(Option)
 Vue.use(cascader)
+Vue.use(Alert)
+Vue.use(Tabs)
+Vue.use(TabPane)
 
 
 
