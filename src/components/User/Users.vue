@@ -460,7 +460,7 @@
             /*监听分配角色对话框的关闭事件,重置选择框的数据*/
             setRoleDialogClosed() {
                 this.selectedRoleId = '',
-                this.userInfo = {}
+                    this.userInfo = {}
             }
         }
     }

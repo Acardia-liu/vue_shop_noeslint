@@ -7,6 +7,7 @@
             <el-breadcrumb-item>商品分类</el-breadcrumb-item>
         </el-breadcrumb>
 
+
         <!--卡片视图区域-->
         <el-card>
             <el-row>
@@ -38,9 +39,12 @@
                 </template>
                 <!--操作-->
                 <template slot="opt" slot-scope="scope">
-                    <el-button type="primary" size="mini" icon="el-icon-edit" @click="showCateDialog(scope.row.cat_id)">编辑</el-button>
+                    <el-button type="primary" size="mini" icon="el-icon-edit" @click="showCateDialog(scope.row.cat_id)">
+                        编辑
+                    </el-button>
                     <el-button type="danger" size="mini" icon="el-icon-delete"
-                               @click="deleteCateById(scope.row.cat_id)">删除</el-button>
+                               @click="deleteCateById(scope.row.cat_id)">删除
+                    </el-button>
                 </template>
             </tree-table>
             <!--分页区域-->
@@ -81,7 +85,7 @@
                                 checkStrictly:'true'
                             }"
                             @change="parentCateChanged"
-                            clearable  ></el-cascader>
+                            clearable></el-cascader>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
@@ -152,43 +156,43 @@
                     }
                 ],
                 /*控制分类对话框的显示与隐藏*/
-                addCateDialogVisible:false,
+                addCateDialogVisible: false,
                 /*控制编辑对话框的显示与隐藏*/
-                editCateDialogVisible:false,
+                editCateDialogVisible: false,
                 /*添加分类的表单数据对象*/
-                addCateForm:{
+                addCateForm: {
                     /*将要添加的分类的名称*/
-                    cat_name:'',
+                    cat_name: '',
                     /*父级分类的id*/
-                    cat_pid:0,
+                    cat_pid: 0,
                     /*分类的等级，默认要添加的是1级分类*/
-                    cat_level:0
+                    cat_level: 0
                 },
                 /*添加分类表单的验证规则对象*/
-                addCateFormRules:{
-                    cat_name:[
+                addCateFormRules: {
+                    cat_name: [
                         {
-                            required:true,
-                            message:'请输入分类的名称',
-                            trigger:'blur'
+                            required: true,
+                            message: '请输入分类的名称',
+                            trigger: 'blur'
                         }
                     ]
                 },
                 /*父级分类的列表*/
-                parentCateList:[],
+                parentCateList: [],
                 /*选中的父级分类的id数组*/
-                selectedKeys:[],
+                selectedKeys: [],
                 /*修改分类的列表*/
-                editCateForm:{
-                    cat_name:''
+                editCateForm: {
+                    cat_name: ''
                 },
                 /*修改分类表单的验证规则对象*/
-                editCateFormRules:{
-                    cat_name:[
+                editCateFormRules: {
+                    cat_name: [
                         {
-                            required:true,
-                            message:'请输入分类的名称',
-                            trigger:'blur'
+                            required: true,
+                            message: '请输入分类的名称',
+                            trigger: 'blur'
                         }
                     ]
                 }
@@ -231,7 +235,7 @@
             },
             /*添加父级分类的数据列表*/
             async getParentCateList() {
-                const { data:res} = await this.$http.get("categories",
+                const {data: res} = await this.$http.get("categories",
                     {
                         params: {
                             /*获取前两级的所有分类*/
@@ -239,7 +243,7 @@
                         }
                     }
                 )
-                if(res.meta.status !== 200){
+                if (res.meta.status !== 200) {
                     this.$message.error("获取父级分类数据失败")
                 }
                 this.parentCateList = res.data
@@ -249,14 +253,13 @@
                 console.log(this.selectedKeys)
                 /*如果selectedKeys数组中的length大于0
                 * 证明选中了父级分类，反之未选中*/
-                if(this.selectedKeys.length>0){
+                if (this.selectedKeys.length > 0) {
                     /*父级分类的id*/
-                    this.addCateForm.cat_pid = this.selectedKeys[this.selectedKeys.length-1]
+                    this.addCateForm.cat_pid = this.selectedKeys[this.selectedKeys.length - 1]
                     /*为当前分类的等级赋值*/
                     this.addCateForm.cat_level = this.selectedKeys.length
                     return
-                }
-                else {
+                } else {
                     /*父级分类的id*/
                     this.addCateForm.cat_pid = 0
                     /*为当前分类的等级赋值*/
@@ -267,11 +270,11 @@
             addCate() {
                 /*表单的预验证*/
                 this.$refs.addCateFormRef.validate(async valid => {
-                    if(!valid) {
+                    if (!valid) {
                         return
                     }
-                   const {data:res} = await this.$http.post("categories",this.addCateForm)
-                    if(res.meta.status !==201 ){
+                    const {data: res} = await this.$http.post("categories", this.addCateForm)
+                    if (res.meta.status !== 201) {
                         this.$message.error("添加分类失败")
                     }
                     this.$message.success("添加分类成功")
@@ -289,9 +292,9 @@
             },
             /*显示编辑对话框*/
             async showCateDialog(id) {
-                const {data:res} = await this.$http.get("categories/"+id)
+                const {data: res} = await this.$http.get("categories/" + id)
                 console.log(res)
-                if(res.meta.status !== 200){
+                if (res.meta.status !== 200) {
                     this.$message.error("查询商品失败")
                 }
                 this.editCateForm = res.data
@@ -299,17 +302,17 @@
             },
             /*编辑分类*/
             editCate() {
-                this.$refs.editCateFormRef.validate(async valid =>{
-                    if(!valid) {
+                this.$refs.editCateFormRef.validate(async valid => {
+                    if (!valid) {
                         return
                     }
-                    const {data:res} = await this.$http.put("categories/"+this.editCateForm.cat_id,{
-                        cat_name:this.editCateForm.cat_name
+                    const {data: res} = await this.$http.put("categories/" + this.editCateForm.cat_id, {
+                        cat_name: this.editCateForm.cat_name
                     })
-                    if(res.meta.status !== 200){
+                    if (res.meta.status !== 200) {
                         this.$message.error("修改商品分类失败")
                     }
-                        this.$message.success("修改商品分类成功")
+                    this.$message.success("修改商品分类成功")
                     this.getCateList()
                     this.editCateDialogVisible = false
 
@@ -327,8 +330,8 @@
                         message: '已取消删除'
                     });
                 });
-                const {data:res} = await this.$http.delete("categories/"+id)
-                if (res.meta.status !== 200){
+                const {data: res} = await this.$http.delete("categories/" + id)
+                if (res.meta.status !== 200) {
                     this.$message.error("删除商品信息失败")
                 }
                 this.$message.success("删除商品信息成功")
@@ -344,7 +347,8 @@
     .treeTable {
         margin-top: 10px;
     }
-    .el-cascader{
+
+    .el-cascader {
         width: 100%;
     }
 </style>

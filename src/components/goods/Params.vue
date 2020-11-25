@@ -311,7 +311,7 @@
                         , {
                             attr_name: this.editForm.attr_name,
                             attr_sel: this.activeName,
-                            attr_vals:this.editForm.attr_vals
+                            attr_vals: this.editForm.attr_vals
                         })
                     if (res.meta.status !== 200) {
                         this.$message.error("修改参数失败！")
@@ -381,8 +381,8 @@
 
             },
             /*删除对应的参数和选项*/
-            handleClose(index,row) {
-                row.attr_vals.splice(index,1)
+            handleClose(index, row) {
+                row.attr_vals.splice(index, 1)
                 this.saveAttrVals(row)
             }
         },

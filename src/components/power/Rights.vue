@@ -13,13 +13,13 @@
             <!--stripe为表格添加隔行变色-->
             <!--只要在el-table元素中定义了height属性，即可实现固定表头的表格，而不需要额外的代码。-->
             <!--若不设置table的height，则默认带滚动条撑开页面，使得左侧菜单栏一起滚动-->
-<!--            <el-table :data="rightsList" border stripe height="550">-->
+            <!--            <el-table :data="rightsList" border stripe height="550">-->
             <el-table :data="rightsList" border stripe height="520">
 
                 <el-table-column type="index" label="#"></el-table-column>
-                <el-table-column  label="权限名称" prop="authName"></el-table-column>
-                <el-table-column  label="路径" prop="path"></el-table-column>
-                <el-table-column  label="权限等级" prop="level">
+                <el-table-column label="权限名称" prop="authName"></el-table-column>
+                <el-table-column label="路径" prop="path"></el-table-column>
+                <el-table-column label="权限等级" prop="level">
                     <template v-slot="scope">
                         <el-tag v-if="scope.row.level === '0'">一级</el-tag>
                         <el-tag type="success" v-else-if="scope.row.level === '1'">二级</el-tag>
@@ -36,18 +36,18 @@
         data() {
             return {
                 /*权限列表*/
-                rightsList:[]
+                rightsList: []
             }
         },
         created() {
             this.getRightsList()
         },
-        methods:{
+        methods: {
             /*获取权限列表*/
             async getRightsList() {
                 /*get函数会返回promise，所以异步封装*/
-                const {data:res} = await this.$http.get("rights/list")
-                if(res.meta.status !== 200){
+                const {data: res} = await this.$http.get("rights/list")
+                if (res.meta.status !== 200) {
                     this.$message.error("获取权限列表失败")
                 }
                 this.rightsList = res.data

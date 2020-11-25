@@ -411,7 +411,7 @@
                 | rids    | 权限 ID 列表（字符串） | 以 `,` 分割的权限 ID 列表（获取所有被选中、叶子节点的key和半选中节点的key, 包括 1，2，3级节点） |*/
                 const idStr = keys.join(',')
                 const {data: res} = await this.$http.post(`roles/${this.setRoleId}/rights`, {rids: idStr})
-                if(res.meta.status !== 200){
+                if (res.meta.status !== 200) {
                     this.$message.error("分配权限失败")
                 }
                 this.$message.success("分配权限成功")
